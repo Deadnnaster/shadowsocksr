@@ -16,16 +16,15 @@ RUN apk update \
     libsodium \
     unzip \
     wget \
-    git \
+    git\
   && rm -rf /var/cache/apk/*
 
-RUN git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git
-WORKDIR ~/shadowsocksr
-RUN  ./initcfg.sh
+
+RUN git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git*
 
 
 
-WORKDIR ~/shadowsocks
+WORKDIR ~/shadowsocksr/shadowsocks
 
 
-CMD python ~/shadowsocks/server.py -p $SERVER_PORT -k $PASSWORD -m $METHOD  -O $PROTOCOL -o $OBFS
+CMD python ~/shadowsocksr/shadowsocks/server.py -p $SERVER_PORT -k $PASSWORD -m $METHOD  -O $PROTOCOL -o $OBFS
