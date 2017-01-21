@@ -16,8 +16,7 @@ RUN apk update \
     libsodium \
     unzip \
     wget \
-    git\
-  && rm -rf /var/cache/apk/*
+    git\*
 
 
 RUN git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git
