@@ -2,7 +2,7 @@ FROM alpine
 
 ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 51348
-ENV PASSWORD= 112233
+ENV PASSWORD=
 ENV METHOD      aes-256-cfb
 ENV PROTOCOL    auth_aes128_md5_compatible
 ENV OBFS      http_post
