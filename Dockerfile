@@ -19,11 +19,10 @@ RUN apk update \
     git \
   && rm -rf /var/cache/apk/*
 
-
-
 RUN git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git
-    && cd ~/shadowsocksr
-    && bash initcfg.sh
+WORKDIR ~/shadowsocksr
+RUN  bash initcfg.sh
+
 
 
 WORKDIR ~/shadowsocks
