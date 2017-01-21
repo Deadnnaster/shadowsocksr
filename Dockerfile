@@ -21,7 +21,7 @@ RUN apk update \
 
 RUN git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git
 WORKDIR ~/shadowsocksr
-RUN  bash initcfg.sh
+RUN  ./initcfg.sh
 
 
 
