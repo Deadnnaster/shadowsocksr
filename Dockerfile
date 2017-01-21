@@ -16,14 +16,14 @@ RUN apk update \
     libsodium \
     unzip \
     wget \
+    git \
   && rm -rf /var/cache/apk/*
 
 
 
-RUN wget --no-check-certificate https://github.com/breakwa11/shadowsocks/archive/manyuser.zip -O /tmp/manyuser.zip \
-    && unzip -d /tmp /tmp/manyuser.zip \
-    && mv /tmp/shadowsocks-manyuser/shadowsocks ~/shadowsocks \
-    && rm -rf /tmp/*
+RUN git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git
+    && cd ~/shadowsocksr
+    && bash initcfg.sh
 
 
 WORKDIR ~/shadowsocks
