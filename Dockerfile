@@ -26,4 +26,4 @@ RUN git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git
 WORKDIR ~/shadowsocksr/shadowsocks
 
 
-CMD python ~/shadowsocksr/shadowsocks/server.py -p $SERVER_PORT -k $PASSWORD -m $METHOD  -O $PROTOCOL -o $OBFS
+CMD python server.py -p $SERVER_PORT -k $PASSWORD -m $METHOD  -O $PROTOCOL -o $OBFS
