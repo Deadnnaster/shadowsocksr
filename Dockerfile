@@ -3,7 +3,7 @@
 #    && apk add python libsodium  py2-pip \
 #    && pip --no-cache-dir install https://github.com/shadowsocksr/shadowsocksr/archive/manyuser.zip
 #ENTRYPOINT ["/usr/bin/ssserver"]
-FROM centos:centos6.5
+FROM centos:centos6
 RUN yum  -y install git python libsodium \
     && git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git \
     && cd ~/shadowsocksr bash initcfg.sh \
