@@ -12,4 +12,3 @@ RUN apk update \
 #WORKDIR ~/shadowsocksr/shadowsocks
 
 ENTRYPOINT ["/usr/bin/ssserver"]
-CMD ssserver -c ~/config.json
