@@ -4,7 +4,7 @@ RUN apk update \
     && apk add python libsodium unzip wget\
     && rm -rf /var/cache/apk/*
 
-RUN makedir /shadowsocksr \
+RUN mkdir /shadowsocksr \
 #git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git\
 #pip --no-cache-dir install https://github.com/shadowsocksr/shadowsocksr/archive/manyuser.zip\
     
