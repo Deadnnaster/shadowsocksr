@@ -5,7 +5,7 @@
 #ENTRYPOINT ["/usr/bin/ssserver"]
 FROM centos:centos6
 RUN yum  -y install git python libsodium \
-    && git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git \
+    && git clone https://github.com/shadowsocksr/shadowsocksr.git 
 RUN cd ~/shadowsocksr bash initcfg.sh 
-RUN cd ~/shadowsocksr/shadowsocks 
+RUN cd ~/shadowsocksr/shadowsocks \
     && python server.py -p 8080 -k 112233 -m aes-256-cfb -O auth_aes128_md5 -o http_simple
