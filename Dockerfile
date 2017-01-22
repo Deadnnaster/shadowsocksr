@@ -12,4 +12,4 @@ RUN apk update \
 #WORKDIR ~/shadowsocksr/shadowsocks
 
 ENTRYPOINT ["/usr/bin/ssserver"]
-CMD python server.py -s 0.0.0.0 -p 12180 -k 112233 -m aes-256-cfb -O auth_aes128_md5 -o http_post_compatible -t 300
+CMD ssserver -c /config.json
