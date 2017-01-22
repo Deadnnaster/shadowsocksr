@@ -1,29 +1,9 @@
 FROM alpine
+MAINTAINER smounives <smounives@outlook.com>
 
-ENV SERVER_ADDR 0.0.0.0
-ENV SERVER_PORT 51348
-ENV PASSWORD=
-ENV METHOD      aes-256-cfb
-ENV PROTOCOL    auth_aes128_md5_compatible
-ENV OBFS      http_post
-ENV TIMEOUT     300
-ENV DNS_ADDR    8.8.8.8
-ENV DNS_ADDR_2  8.8.4.4
+RUN set -ex \
+    && if [ $(wget -qO- ipinfo.io/country) == CN ]; then echo "http://mirrors.aliyun.com/alpine/latest-stable/main/" > /etc/apk/repositories ;fi \
+    && apk add --no-cache libsodium py-pip \
+    && pip --no-cache-dir install https://github.com/shadowsocksr/shadowsocksr/archive/manyuser.zip
 
-
-RUN apk update \
-    && apk add python \
-    libsodium \
-    unzip \
-    wget \
-    git\*
-
-
-RUN git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git
-
-
-
-WORKDIR ~/shadowsocksr/shadowsocks
-
-
-CMD python server.py -p $SERVER_PORT -k $PASSWORD -m $METHOD  -O $PROTOCOL -o $OBFS
+ENTRYPOINT ["/usr/bin/ssserver"]
