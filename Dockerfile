@@ -1,7 +1,18 @@
-FROM alpine
-MAINTAINER smounives <smounives@outlook.com>
+FROM alpine:edge
+MAINTAINER Min Yu <yumin9822@gmail.com>
 
-RUN apk add --no-cache libsodium py-pip \
-    && pip --no-cache-dir install https://github.com/shadowsocksr/shadowsocksr/archive/manyuser.zip
+RUN apk update \
+    && apk add python libsodium unzip wget \
+    && rm -rf /var/cache/apk/*
+
+RUN mkdir /ssr \
+    && cd /ssr \
+    && wget --no-check-certificate https://github.com/breakwa11/shadowsocks/archive/manyuser.zip -O /tmp/manyuser.zip \
+    && unzip -d /tmp /tmp/manyuser.zip \
+    && mv /tmp/shadowsocks-manyuser/shadowsocks /ssr/shadowsocks \
+    && rm -rf /tmp/*
+
+
+WORKDIR /ssr/shadowsocks
 
 ENTRYPOINT ["/usr/bin/ssserver"]
