@@ -12,7 +12,7 @@ ENV DNS_ADDR_2  8.8.4.4
 
 RUN apk update \
     && apk add python libsodium unzip wget py2-pip \
-    && pip install https://github.com/shadowsocksr/shadowsocksr/archive/manyuser.zip
+    && pip install https://github.com/Deadnnaster/shadowsocksr/archive/Deadnnaster-patch-1.zip
 
 
 WORKDIR ~/shadowsocks
