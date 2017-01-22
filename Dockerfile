@@ -1,7 +1,7 @@
 FROM alpine
 
 RUN apk update \
-    && python libsodium unzip wget py-pip \
+    && apk add python libsodium unzip wget py-pip \
     && pip install https://github.com/shadowsocksr/shadowsocksr/archive/manyuser.zip \*
   
 #git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git\
