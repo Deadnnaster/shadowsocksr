@@ -15,7 +15,7 @@ RUN apk update \
 
 #ADD config.json /config.json
 ENTRYPOINT ["/usr/bin/ssserver"]
-RUN ssserver -c /config.json
+RUN ssserver
 #{ 
    #-c:/config.json,
    #-m: aes-256-cfb ,
