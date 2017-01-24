@@ -22,3 +22,21 @@ RUN ssserver -c /config.json
    #-O: auth_aes128_md5 ,  
    #-o: http_post_compatible 
  # }
+{
+    "server": "0.0.0.0",
+    "server_ipv6": "::",
+    "server_port": 8388,
+    "local_address": "127.0.0.1",
+    "local_port": 1080,
+    "password": "password@8388",
+    "timeout": 120,
+    "method": "aes-256-cfb",
+    "protocol": "auth_sha1_compatible",
+    "protocol_param": "",
+    "obfs": "http_simple_compatible",
+    "obfs_param": "",
+    "redirect": "",
+    "dns_ipv6": false,
+    "fast_open": false,
+    "workers": 1
+}
