@@ -1,12 +1,22 @@
-#FROM alpine
-#RUN apk update \
-#    && apk add python libsodium  py2-pip \
-#    && pip --no-cache-dir install https://github.com/shadowsocksr/shadowsocksr/archive/manyuser.zip
-#ENTRYPOINT ["/usr/bin/ssserver"]
-FROM centos:centos6
-RUN yum  -y install git python libsodium 
-RUN git clone https://github.com/shadowsocksr/shadowsocksr.git 
-RUN cd /shadowsocksr  ls
-RUN chmod +x *.sh bash initcfg.sh 
-RUN cd /shadowsocksr/shadowsocks
-RUN python server.py -p 8080 -k 112233 -m aes-256-cfb -O auth_aes128_md5 -o http_simple
+FROM alpine
+
+RUN apk update \
+    && apk add python libsodium unzip wget py2-pip \
+    && pip install https://github.com/shadowsocksr/shadowsocksr/archive/manyuser.zip
+  
+#git clone -b manyuser https://github.com/shadowsocksr/shadowsocksr.git\
+  #  && wget --no-check-certificate https://github.com/breakwa11/shadowsocks/archive/manyuser.zip -O /tmp/manyuser.zip \
+  #  && unzip -d /tmp /tmp/manyuser.zip \
+  #  && mv /tmp/shadowsocks-manyuser/ /shadowsocksr \
+  #  && rm -rf /tmp/*
+
+
+#WORKDIR ~/shadowsocksr/shadowsocks
+
+ENTRYPOINT ["/usr/bin/ssserver"]
+RUN ssserver { 
+  #-c:/shadowsocks/config.json,
+   -m: aes-256-cfb ,
+   -O: auth_aes128_md5 ,  
+   -o: http_post_compatible 
+  }
