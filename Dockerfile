@@ -13,27 +13,13 @@ RUN apk update \
 #WORKDIR ~/shadowsocksr/shadowsocks
 
 ADD config.json /config.json
-{
-    "server": "0.0.0.0",
-    "server_ipv6": "::",
-    "server_port": 8388,
-    "local_address": "127.0.0.1",
-    "local_port": 1080,
-    "password": "password@8388",
-    "timeout": 120,
-    "method": "aes-256-cfb",
-    "protocol": "auth_sha1_compatible",
-    "protocol_param": "",
-    "obfs": "http_simple_compatible",
-    "obfs_param": "",
-    "redirect": "",
-    "dns_ipv6": false,
-    "fast_open": false,
-    "workers": 1
-}
 
 ENTRYPOINT ["/usr/bin/ssserver"]
-RUN ssserver -c /config.json
+RUN ssserver -p 443 
+             -k password 
+             -m aes-256-cfb 
+             -O auth_sha1_v4 
+             -o http_simple
 #{ 
    #-c:/config.json,
    #-m: aes-256-cfb ,
