@@ -16,7 +16,7 @@ RUN apk update \
 ADD config.json /config.json
 ENTRYPOINT ["/usr/bin/ssserver"]
 RUN ssserver { 
-   -c:/config.json,
+   #-c:/config.json,
    -m: aes-256-cfb ,
    -O: auth_aes128_md5 ,  
    -o: http_post_compatible 
