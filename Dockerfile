@@ -10,18 +10,9 @@ RUN apk update \
   #  && mv /tmp/shadowsocks-manyuser/ /shadowsocksr \
   #  && rm -rf /tmp/*
 
-
 #WORKDIR ~/shadowsocksr/shadowsocks
 
-#ADD config.json /config.json
-ENTRYPOINT ["/usr/bin/ssserver"]
-RUN ssserver
-#{ 
-   #-c:/config.json,
-   #-m: aes-256-cfb ,
-   #-O: auth_aes128_md5 ,  
-   #-o: http_post_compatible 
- # }
+ADD config.json /config.json
 {
     "server": "0.0.0.0",
     "server_ipv6": "::",
@@ -40,3 +31,12 @@ RUN ssserver
     "fast_open": false,
     "workers": 1
 }
+
+ENTRYPOINT ["/usr/bin/ssserver"]
+RUN ssserver -c /config.json
+#{ 
+   #-c:/config.json,
+   #-m: aes-256-cfb ,
+   #-O: auth_aes128_md5 ,  
+   #-o: http_post_compatible 
+ # }
